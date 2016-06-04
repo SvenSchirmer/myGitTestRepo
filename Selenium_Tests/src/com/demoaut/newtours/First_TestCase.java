@@ -32,8 +32,8 @@ public class First_TestCase {
     private By dropdown_airline = By.name("airline"); // Auswahl Airline   
     private By button_findFlights = By.name("findFlights"); // Button "Continue"
     
-    //private By txt_signOn = By.xpath("/html/body/div/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[3]/td/p/font");
-    
+    // private By txt_signOn = By.xpath("/html/body/div/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[3]/td/p/font");
+	//System.out.println(wd.findElement(txt_signOn).getText());    
 
     @Test (groups = "simple")
     public void successfulLogin() {
@@ -43,10 +43,9 @@ public class First_TestCase {
     	// Seite öffnen
     	wd.get("http://newtours.demoaut.com/mercurysignon.php");
 
-    	// Logindaten eingeben und "Login" klicken
-    	
-    	//System.out.println(wd.findElement(txt_signOn).getText());
-    	
+    	// Prüfen, ob die Loginseite korrekt geladen wurde - über den Titel der Seite
+        Assert.assertEquals(wd.getTitle(), "Sign-on: Mercury Tours");
+        
         wd.findElement(input_UserName).sendKeys("tutorial");
         wd.findElement(input_pwd).sendKeys("tutorial");
         wd.findElement(button_login).click();
@@ -83,7 +82,8 @@ public class First_TestCase {
        * 2 Personen
        * von Portland nach Sydney
        * Abflug: 20. Februar
-       * Rückflung: 3. März
+       * Rückflug: 3. März
+       * Klasse: First
        */
         
        new Select(wd.findElement(dropdown_passengers)).selectByValue("2");	
@@ -91,7 +91,7 @@ public class First_TestCase {
        new Select(wd.findElement(dropdown_fromMonth)).selectByVisibleText("February");
        new Select(wd.findElement(dropdown_fromDay)).selectByValue("20");
        new Select(wd.findElement(dropdown_toPort)).selectByValue("Sydney");
-       new Select(wd.findElement(dropdown_toMonth)).selectByVisibleText("March");
+       new Select(wd.findElement(dropdown_toMonth)).selectByValue("3");
        new Select(wd.findElement(dropdown_toDay)).selectByValue("3");
        
        List<WebElement> radioButton =  wd.findElements(radio_servClass);
@@ -107,6 +107,8 @@ public class First_TestCase {
     		   break;
     	   }
        }
+       
+       new Select(wd.findElement(dropdown_airline)).selectByVisibleText("Unified Airlines");
     	  
        // Flüge suchen
        wd.findElement(button_findFlights).click();  
