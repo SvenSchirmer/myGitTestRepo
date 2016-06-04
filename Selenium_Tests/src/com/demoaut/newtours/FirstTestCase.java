@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class First_TestCase {
+public class FirstTestCase {
 	
 	//Locators within the Login-page
     private By input_UserName = By.name("userName");
